@@ -5,14 +5,13 @@ import {
     TouchableOpacity,
     Text
 } from "react-native";
-import { Avatar, ListItem } from "react-native-elements";
-import { Left, Right, Body } from "native-base"
+import { Avatar } from "react-native-elements";
+import { ListItem, Left, Right, Body } from "native-base"
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../actions/contactActions";
 import { DELETE_PROMPT_MSG } from "../constants/types";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native"
-import { View } from "react-native";
 
 const Contact = ({ contact }) => {
     const navigation = useNavigation();
@@ -40,40 +39,36 @@ const Contact = ({ contact }) => {
 
     // set up the display
     return (
-        <React.Fragment>
-            <ListItem>
-                <ListItem.Content>
-                    <View>
-                        <TouchableOpacity testID="navigateDetails"
-                            style={styles.touchableOpacityStyle}
-                            onPress={() => navigation.navigate("Details", { contactId: id })}>
-                            <Left>{avatarImg}</Left>
-                            <Body style={styles.bodyStyle}>
-                                <Text style={styles.textStyle}>
-                                    {firstName} {lastName}
-                                </Text>
-                                <Text style={styles.numberStyle}>{phoneNumber}</Text>
-                            </Body>
-                            <Right style={styles.iconStyle}>
-                                <MaterialIcons name="delete" testID="deleteContact"
-                                    size={20} onPress={() => toDelete()}
-                                />
-                                <MaterialIcons name="info" testID="infoContact"
-                                    size={20} onPress={() => navigation.navigate("Details", { contactId: id })}
-                                />
-                                <MaterialIcons name="edit" testID="editContact"
-                                    size={20} onPress={() => navigation.navigate("AddContact",
-                                        {
-                                            contactId: id,
-                                            createOrEdit: false,
-                                        })}
-                                />
-                            </Right>
-                        </TouchableOpacity>
-                    </View>
-                </ListItem.Content>
+        <>
+            <ListItem avatar>
+                <TouchableOpacity testID="navigateDetails"
+                    style={styles.touchableOpacityStyle}
+                    onPress={() => navigation.navigate("Details", { contactId: id })}>
+                    <Left>{avatarImg}</Left>
+                    <Body style={styles.bodyStyle}>
+                        <Text style={styles.textStyle}>
+                            {firstName} {lastName}
+                        </Text>
+                        <Text style={styles.numberStyle}>{phoneNumber}</Text>
+                    </Body>
+                    <Right style={styles.iconStyle}>
+                        <MaterialIcons name="delete" testID="deleteContact"
+                            size={20} onPress={() => toDelete()}
+                        />
+                        <MaterialIcons name="info" testID="infoContact"
+                            size={20} onPress={() => navigation.navigate("Details", { contactId: id })}
+                        />
+                        <MaterialIcons name="edit" testID="editContact"
+                            size={20} onPress={() => navigation.navigate("AddContact",
+                                {
+                                    contactId: id,
+                                    createOrEdit: false,
+                                })}
+                        />
+                    </Right>
+                </TouchableOpacity>
             </ListItem>
-        </React.Fragment>
+        </>
     );
 };
 export default Contact;

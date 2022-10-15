@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -8,6 +8,7 @@ import Contacts from './components/contactsList';
 import store from './store';
 
 const Stack = createStackNavigator();
+
 function App() {
   return (
     <React.Fragment>
