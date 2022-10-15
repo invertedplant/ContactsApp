@@ -10,7 +10,7 @@ import store from './store';
 const Stack = createStackNavigator();
 function App() {
   return (
-    <>
+    <React.Fragment>
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Contacts">
@@ -32,7 +32,7 @@ function App() {
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
-    </>
+    </React.Fragment>
   );
 }
 

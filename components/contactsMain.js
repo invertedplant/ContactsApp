@@ -12,6 +12,7 @@ import { deleteContact } from "../actions/contactActions";
 import { DELETE_PROMPT_MSG } from "../constants/types";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native"
+import { View } from "react-native";
 
 const Contact = ({ contact }) => {
     const navigation = useNavigation();
@@ -27,7 +28,7 @@ const Contact = ({ contact }) => {
             ]);
     };
 
-    // set up the cute icon
+    // set up the icon
     let avatarImg = null;
     if (image === null) {
         avatarImg = <Avatar rounded title={avatarDisplayName} size="small" />;
@@ -39,36 +40,40 @@ const Contact = ({ contact }) => {
 
     // set up the display
     return (
-        <>
+        <React.Fragment>
             <ListItem>
-                <TouchableOpacity testID="navigateDetails"
-                    style={styles.touchableOpacityStyle}
-                    onPress={() => navigation.navigate("Details", { contactId: id })}>
-                    <Left>{avatarImg}</Left>
-                    <Body style={styles.bodyStyle}>
-                        <Text style={styles.textStyle}>
-                            {firstName} {lastName}
-                        </Text>
-                        <Text style={styles.numberStyle}>{phoneNumber}</Text>
-                    </Body>
-                    <Right style={styles.iconStyle}>
-                        <MaterialIcons name="delete" testID="deleteContact"
-                            size={20} onPress={() => toDelete()}
-                        />
-                        <MaterialIcons name="info" testID="infoContact"
-                            size={20} onPress={() => navigation.navigate("Details", { contactId: id })}
-                        />
-                        <MaterialIcons name="edit" testID="editContact"
-                            size={20} onPress={() => navigation.navigate("AddContact",
-                                {
-                                    contactId: id,
-                                    createOrUpdate: false,
-                                })}
-                        />
-                    </Right>
-                </TouchableOpacity>
+                <ListItem.Content>
+                    <View>
+                        <TouchableOpacity testID="navigateDetails"
+                            style={styles.touchableOpacityStyle}
+                            onPress={() => navigation.navigate("Details", { contactId: id })}>
+                            <Left>{avatarImg}</Left>
+                            <Body style={styles.bodyStyle}>
+                                <Text style={styles.textStyle}>
+                                    {firstName} {lastName}
+                                </Text>
+                                <Text style={styles.numberStyle}>{phoneNumber}</Text>
+                            </Body>
+                            <Right style={styles.iconStyle}>
+                                <MaterialIcons name="delete" testID="deleteContact"
+                                    size={20} onPress={() => toDelete()}
+                                />
+                                <MaterialIcons name="info" testID="infoContact"
+                                    size={20} onPress={() => navigation.navigate("Details", { contactId: id })}
+                                />
+                                <MaterialIcons name="edit" testID="editContact"
+                                    size={20} onPress={() => navigation.navigate("AddContact",
+                                        {
+                                            contactId: id,
+                                            createOrEdit: false,
+                                        })}
+                                />
+                            </Right>
+                        </TouchableOpacity>
+                    </View>
+                </ListItem.Content>
             </ListItem>
-        </>
+        </React.Fragment>
     );
 };
 export default Contact;

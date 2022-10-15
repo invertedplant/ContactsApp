@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View, Text } from "react-native";
 import { SearchBar, ListItem } from "react-native-elements";
 import { useSelector } from "react-redux";
 import Contact from "./contactsMain";

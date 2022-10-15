@@ -1,6 +1,6 @@
 import { ScrollView, Text } from "native-base";
 import React, { useState, useEffect } from "react";
-import { Alert } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { addContact, readContact, updateContact } from "../actions/contactActions";
 import { ADD_SUCCESS_MSG } from "../constants/types";
